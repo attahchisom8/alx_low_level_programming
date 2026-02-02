@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void print_square(size)
+void print_square(int size)
 {
 	int k, p;
 
