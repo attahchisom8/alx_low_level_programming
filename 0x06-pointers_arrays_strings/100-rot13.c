@@ -1,55 +1,45 @@
 #include "main.h"
 
 /**
- * is_alpha - checks if a character is an alphabet
- * @c: The given character
- * 
- * Return: 1 if true else 0
- */
-
- int is_alpha(int c)
- {
-	int k;
-
-	for (k = 65; k <= 90; k++)
-	{
-		if (c == k)
-		return (1);
-	}
-
-	for (k = 97; k <= 122; k++)
-	{
-		if (k == c)
-		return (1);
-	}
-
-	return (0);
- }
-
-/**
  * rot13 - rotate an alnetic character inn a circe of the
  * next 13 characters
  * @str: string to rotate
- * 
+ *
  * Return: The modified string
  */
 
- char *rot13(char *str)
- {
-	char *temp = str;
+char *rot13(char *str)
+{
+	char *curr_char = str;
+	char small_letter_arr[26] = {
+		'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+		'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+		'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
+		'y', 'z'
+	};
+	char big_letter_arr[26] = {
+		'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+		'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+		'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+		'Y', 'Z'
+	};
+	int k, idx;
 
-	while (*temp)
+	while (*curr_char)
 	{
-		if (is_alpha(*temp))
+		for (k = 0; k < 26; k++)
 		{
-			int val;
+			if (small_letter_arr[k] == *curr_char || big_letter_arr[k] == *curr_char)
+			{
+				idx = 0;
 
-			// val = *temp;
-			val = (*temp + 13) % 26;
-			*temp = val + '0';
+				idx = (k + 13) % 26;
+				*curr_char = (small_letter_arr[k] == *curr_char) * small_letter_arr[idx]
+				+ (big_letter_arr[k] == *curr_char) * big_letter_arr[idx];
+			}
 		}
-		temp++;
+		curr_char++;
 	}
 
 	return (str);
- }
+}
