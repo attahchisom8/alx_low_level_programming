@@ -28,7 +28,7 @@ int to_upper(int c)
  * Return: str
  */
 
-char *cap_string(char *str)
+void *cap_string(char *str)
 {
 	char delim_arr[] = {' ', '\n', '\t', '.', '!', '?', '"', '(', ')', '{', '}'};
 	size_t delim_size = sizeof(delim_arr) / sizeof(char), k = 0;
@@ -45,6 +45,4 @@ char *cap_string(char *str)
 		}
 		k++;
 	}
-
-	return (str);
 }
