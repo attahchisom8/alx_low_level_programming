@@ -31,11 +31,13 @@ char *rot13(char *str)
 		{
 			if (small_letter_arr[k] == *curr_char || big_letter_arr[k] == *curr_char)
 			{
-				idx = 0;
+				char small, big;
 
 				idx = (k + 13) % 26;
-				*curr_char = (small_letter_arr[k] == *curr_char) * small_letter_arr[idx]
-				+ (big_letter_arr[k] == *curr_char) * big_letter_arr[idx];
+				small = (small_letter_arr[k] == *curr_char) * small_letter_arr[idx];
+				big = (big_letter_arr[k] == *curr_char) * big_letter_arr[idx];
+				*curr_char = small + big;
+				break;
 			}
 		}
 		curr_char++;

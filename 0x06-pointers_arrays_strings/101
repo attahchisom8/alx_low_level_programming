@@ -1,0 +1,61 @@
+#include "main.h"
+
+
+unsigned int _pow(int base, int power);
+
+/**
+ * print_number - funcyion tgat prints a number
+ * @n: numver ro be peinted
+ *
+ * Return: void
+ */
+
+void print_number(int n)
+{
+	int power = 0, k;
+	unsigned int num;
+
+	if (n < 0)
+	{
+		_putchar('-');
+		num = -(unsigned int)n;
+	}
+	else
+		num = n;
+
+	k = num;
+	while (k >= 10)
+	{
+		power++;
+		k /= 10;
+	}
+
+	for (k = power; k >= 0; k--)
+	{
+		unsigned int m;
+
+		m = (num / _pow(10, k)) % 10;
+		_putchar(m + '0');
+	}
+}
+
+/**
+ * _pow - mutiply base by itself as many times as the value of power
+ * @base: base value
+ * @power: the power factor/index
+ *
+ * Return: The result of the operation
+ */
+
+unsigned int _pow(int base, int power)
+{
+	int k;
+	unsigned int result = 1;
+
+	for (k = 0; k < power; k++)
+	{
+		result *= base;
+	}
+
+	return (result);
+}
